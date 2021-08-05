@@ -1,5 +1,15 @@
 require('dotenv').config();
 
+const { MongoClient } = require('mongodb');
+const uri = "mongodb+srv://db_test_user:8GO9GrlyLJm8qjD3@cluster0.2j8xv.mongodb.net/cluster0?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
+
+
 
 let Person;
 

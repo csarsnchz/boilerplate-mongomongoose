@@ -1,13 +1,24 @@
 require('dotenv').config();
 
-const { MongoClient } = require('mongodb');
-const uri = "mongodb+srv://db_test_user:8GO9GrlyLJm8qjD3@cluster0.2j8xv.mongodb.net/cluster0?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
+const mongoose = require('mongoose');
+const connectionString = process.env['MONGO_URI'];
+
+const connectDB = async () => {
+  const uri = connectionString;
+  const options = {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  };
+
+  try {
+    await mongoose.connect(uri, options);
+    console.log('Successfully connected to MongoDB Atlas');
+  } catch (error) {
+    console.error('Error connecting to MongoDB Atlas:', error);
+  }
+};
+
+connectDB().catch(console.dir);
 
 
 

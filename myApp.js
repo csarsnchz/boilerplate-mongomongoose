@@ -39,8 +39,21 @@ let newPerson = new Person({name: "Jane Fonda", age: 84, favoriteFoods: ["eggs",
     });
 };
 
+let arrayOfPeople = [
+                {name: "Jane Fonda", age: 84, favoriteFoods: ["eggs", "fish", "fresh fruit"]},
+                {name: "Jane Doe", age: 54, favoriteFoods: ["eggs", "fish", "fresh fruit, chicken"]},
+                {name: "Jane Foster", age: 24, favoriteFoods: ["eggs", "fish", "fresh fruit, meat"]},
+                {name: "Jane Fish", age: 30, favoriteFoods: ["eggs", "fish", "fresh fruit, pizza"]},
+                {name: "Juliette Fonda", age: 23, favoriteFoods: ["eggs", "fish", "fresh fruit, burgers"]},
+                {name: "Janette Folgar", age: 25, favoriteFoods: ["eggs", "fish", "fresh fruit, tacos"]},
+                {name: "Janet Ford", age: 70, favoriteFoods: ["eggs", "fish", "fresh fruit, pork"]}
+];
+
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  Person.create(arrayOfPeople, function(err, data) {
+    if (err) return console.error(err);
+    done(null, data)
+    });
 };
 
 const findPeopleByName = (personName, done) => {

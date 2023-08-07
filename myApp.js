@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const mongoose = require('mongoose');
 const connectionString = process.env['MONGO_URI'];
+const Schema = mongoose.Schema;
 
 const connectDB = async () => {
   const uri = connectionString;
@@ -20,9 +21,14 @@ const connectDB = async () => {
 
 connectDB().catch(console.dir);
 
-
+const personSchema = new Schema({
+name: {type: String, required: true},
+age: {type: String, required: false},
+favoriteFoods: {type: [String], required: false}
+});
 
 let Person;
+Person = mongoose.model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
   done(null /*, data*/);

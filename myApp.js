@@ -22,7 +22,7 @@ const connectDB = async () => {
 connectDB().catch(console.dir);
 
 const personSchema = new Schema({
-name: {type: String, required: true, unique: true},
+name: {type: String, required: true},
 age: {type: Number, required: false},
 favoriteFoods: {type: [String], required: false}
 });

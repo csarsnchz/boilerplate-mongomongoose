@@ -22,8 +22,8 @@ const connectDB = async () => {
 connectDB().catch(console.dir);
 
 const personSchema = new Schema({
-name: {type: String, required: true},
-age: {type: String, required: false},
+name: {type: String, required: true, unique: true},
+age: {type: Number, required: false},
 favoriteFoods: {type: [String], required: false}
 });
 
@@ -31,7 +31,12 @@ let Person;
 Person = mongoose.model("Person", personSchema);
 
 const createAndSavePerson = (done) => {
-  done(null /*, data*/);
+let newPerson = new Person({name: "Jane Fonda", age: 84, favoriteFoods: ["eggs", "fish", "fresh fruit"]});
+
+  newPerson.save(function(err, data) {
+    if (err) return console.error(err);
+    done(null, data)
+    });
 };
 
 const createManyPeople = (arrayOfPeople, done) => {

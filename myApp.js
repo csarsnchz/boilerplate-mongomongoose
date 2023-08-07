@@ -62,6 +62,7 @@ const findPeopleByName = (personName, done) => {
   Person.find({name: personName}, (err, personFound) => {
     if (err) return console.log(err);
     done(null, personFound);
+    console.log(personFound);
     });  
 };
 

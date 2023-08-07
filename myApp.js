@@ -98,9 +98,10 @@ const findEditThenSave = (personId, done) => {
 
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
+  
   Person.find({name: personName}, (err, personFound) => {
     if (err) return console.log(err);
-    personFound.findOneAndUpdate(
+    Person.findOneAndUpdate(
       {
       name: personName // search query
       },
@@ -112,14 +113,13 @@ const findAndUpdate = (personName, done) => {
       runValidators: true // validate before update
       }
     )
-      .then((doc) => {
-      console.log(doc);
+      .then((personFound) => {
+      console.log(personFound);
       })
       .catch((err) => {
       console.error(err);
       });
     done(null, personFound);
-    console.log(personFound);
     });  
 };
 

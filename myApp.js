@@ -127,7 +127,7 @@ const queryChain = (done) => {
     .sort({ name: 1 })
     .limit(2)
     .select({ name: 1, age: 0, favoriteFoods: 1 })
-    .exec((err, people) => {
+    .exec(function(err, people) {
       if (err) return console.log(err);
       done(null, people);
     });
